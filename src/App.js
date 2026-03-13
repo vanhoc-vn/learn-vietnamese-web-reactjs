@@ -9,14 +9,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        Hello World Van Hoc &amp; HoiDanIT
+        Helo World &amp;
         <MyComponent></MyComponent>
       </div>
-      
-    );
+    )
   }
 }
-
 // const App = () => {
 //   const count = useSelector(state => state.counter.count);
 //   const dispatch = useDispatch();
