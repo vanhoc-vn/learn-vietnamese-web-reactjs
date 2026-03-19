@@ -1,4 +1,5 @@
 import React from "react";
+import './DisplayInfor.scss';
 
 class DisplayInfor extends React.Component {
 
@@ -15,7 +16,7 @@ class DisplayInfor extends React.Component {
         const { listUsers } = this.props
         // props = properties: Tài sản, vì nó dùng để truyền dữ liệu từ cha sang cho con.
         return (
-            <div>
+            <div className='display-infor-container'>
                 <div>
                     <span onClick={() => { this.handleShowHide() }}>
                         {
