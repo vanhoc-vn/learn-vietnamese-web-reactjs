@@ -20,18 +20,32 @@ class MyComponent extends React.Component { // class đã trả thành 1 class c
             listUsers: [userObj, ...this.state.listUsers] // Spread Operator [...] 
         })
     }
+    handleDeleteUser = (userId) => {
+        let listUserClone = this.state.listUsers;
+        listUserClone = listUserClone.filter(item => item.id !== userId);
+        this.setState({
+            listUsers: listUserClone
+        })
+
+    }
     render() {
         // DRY; don't repeat yourself.
+
         return (
-            <div>
-                <AddUserInfor
-                    handleAddNewUser={this.handleAddNewUser}
-                />
-                <br /> <br />
-                <DisplayInfor
-                    listUsers={this.state.listUsers}
-                />
-            </div>
+            <>
+                <div className='a'>
+                    <AddUserInfor
+                        handleAddNewUser={this.handleAddNewUser}
+                    />
+                    <br /> <br />
+                    <DisplayInfor
+                        listUsers={this.state.listUsers}
+                        handleDeleteUser={this.handleDeleteUser}
+                    />
+                </div>
+                <div className='b'>
+                </div>
+            </>
         );
     }
 }
