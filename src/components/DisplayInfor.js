@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './DisplayInfor.scss';
 import logo from './../logo.svg';
 
@@ -36,11 +36,27 @@ import logo from './../logo.svg';
 //     }
 // }
 const DisplayInfor = (props) => {
-    const { listUsers } = props
+    const { listUsers } = props; // Ojb
+
+    const [isShowHideListUser, setShowHideListUser] = useState(true);
+    // Destructuring assignment
+    // this.state = {
+    //     isShowHideListUser: true
+    // }
+    const handleShowHideListUser = () => {
+        setShowHideListUser(!isShowHideListUser);
+    }
+
+
     return (
         <div className='display-infor-container'>
+            <div>
+                <span onClick={() => handleShowHideListUser()}>
+                    {isShowHideListUser === true ? "Hide list Users" : "Show list Users"}
+                </span>
+            </div>
             {
-                true &&
+                isShowHideListUser &&
                 <>
                     {
                         listUsers.map((user, index) => {
