@@ -5,8 +5,10 @@ import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
+import ModalViewUser from "./ModalViewUser";
 
 const ManageUser = (props) => {
+    const [showModalViewUser, setShowModalViewUser] = useState(false);
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
@@ -28,6 +30,15 @@ const ManageUser = (props) => {
         setShowModalUpdateUser(true);
         setDataUpdate(user);
     }
+    const handleClickBtnView = (user) => {
+        setDataUpdate(user);      // Gán dữ liệu user vào state chung
+        setShowModalViewUser(true); // Chỉ mở Modal View
+    }
+
+
+    const resetUpdateData = () => {
+        setDataUpdate({});
+    }
 
 
     return (
@@ -45,8 +56,15 @@ const ManageUser = (props) => {
                     <TableUser
                         listUsers={listUsers}
                         handleClickBtnUpdate={handleClickBtnUpdate}
+                        handleClickBtnView={handleClickBtnView}
                     />
                 </div>
+                <ModalViewUser
+                    show={showModalViewUser}
+                    setShow={setShowModalViewUser}
+                    dataUpdate={dataUpdate}        // Modal có dữ liệu để hiện lên
+                    resetUpdateData={resetUpdateData} // Để xóa trắng data khi đóng Modal
+                />
                 <ModalCreateUser
                     show={showModalCreateUser}
                     setShow={setShowModalCreateUser}
@@ -56,7 +74,8 @@ const ManageUser = (props) => {
                     show={showModalUpdateUser}
                     setShow={setShowModalUpdateUser}
                     dataUpdate={dataUpdate}
-
+                    fetchListUsers={fetchListUsers}
+                    resetUpdateData={resetUpdateData}
                 />
             </div>
         </div>
