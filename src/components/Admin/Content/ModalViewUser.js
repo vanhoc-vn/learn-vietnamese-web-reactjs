@@ -28,7 +28,6 @@ const ModalViewUser = (props) => {
     const [previewImage, setPreviewImage] = useState("");
 
     useEffect(() => {
-        console.log("Run user", dataUpdate)
         if (!_.isEmpty(dataUpdate)) {
             // UpdateState
             setShow(false);
